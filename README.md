@@ -1,4 +1,4 @@
-# LaTeX author support for the International Press journal *Cambridge Journal for Junior Scientists* (*CJJS*)
+# International Press journal CJJS author support
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ Author support service provides LaTeX style files and `*.tex` file templates des
 
 The following files are given in the repository (or directly in `*.zip` archive):
 
-* `ipart.cls`, `ipart-layout-main.sty` - LaTeX style files designed for International Press journal articles.
+* `ipart.cls`, `ipart-layout-*.sty` - LaTeX style files designed for International Press journal articles.
   Please do not change them. These files are already loaded in the respective template files;
 * `imsart-number.bst`, `imsart-nameyear.bst` - suggested BibTeX[^1] related bibliography styles.
   If your bibliography is structured in BibTeX format, loading your `*.bib` file
@@ -31,7 +31,7 @@ The following files are given in the repository (or directly in `*.zip` archive)
 
 ## Setup
 * Clone the repository or download the `*.zip` archive. Rename the package to `<your-project-name>`.
-* Install `ipart.cls`, `ipart-layout-main.sty`, `imsart-number.bst`, `imsart-nameyear.bst` in your TeX system (suggested directory: `ipart`).
+* Install `ipart.cls`, `ipart-layout-*.sty`, `imsart-number.bst`, `imsart-nameyear.bst` in your TeX system (suggested directory: `ipart`).
 * Use the file `cjjs-template.tex` to start your article as a template.
 * Use the file `cjjs-sample.tex` as a reference for how to prepare a topmatter of your article.
 
@@ -78,51 +78,51 @@ The preamble of your LaTeX document should look like this:
 
 \begin{document}
 
-    \begin{frontmatter}
+\begin{frontmatter}
 
-        \title{Title\protect\thanksref{T1}}
-        \thankstext{T1}{Footnote to the title with the `thankstext' command.}
+\title{Title\protect\thanksref{T1}}
+\thankstext{T1}{Footnote to the title with the `thankstext' command.}
 
-        \begin{aug}
-            \author{\fnms{First} \snm{Author}\thanksref{t2}\ead[label=e1]{first@somewhere.com}},
-            \address{Address of the First Author\\
-                     Country\\
-                     \printead{e1}}
-            \author{\fnms{Second} \snm{Author}\ead[label=e2]{second@somewhere.com}},
-            \address{Address of the Second Author\\
-                     Country\\
-                     \printead{e2}}
-            \and
-            \author{\fnms{Third} \snm{Author}
-                    \ead[label=e3]{third@somewhere.com}%
-                    \ead[label=u1,url]{http://www.foo.com}}
-            \address{Address of the Third Author\\
-                     Country\\
-                     \printead{e3}\\
-                     \printead{u1}}
-            \thankstext{t2}{Footnote to the first author with the `thankstext' command.}
-        \end{aug}
+\begin{aug}
+\author{\fnms{First} \snm{Author}\thanksref{t2}\ead[label=e1]{first@somewhere.com}},
+\address{Address of the First Author\\
+         Country\\
+         \printead{e1}}
+\author{\fnms{Second} \snm{Author}\ead[label=e2]{second@somewhere.com}},
+\address{Address of the Second Author\\
+         Country\\
+         \printead{e2}}
+\and
+\author{\fnms{Third} \snm{Author}
+        \ead[label=e3]{third@somewhere.com}%
+        \ead[label=u1,url]{http://www.foo.com}}
+\address{Address of the Third Author\\
+         Country\\
+         \printead{e3}\\
+         \printead{u1}}
+\thankstext{t2}{Footnote to the first author with the `thankstext' command.}
+\end{aug}
 
-        \begin{abstract}
-            ...
-        \end{abstract}
+\begin{abstract}
+...
+\end{abstract}
 
-        \begin{keyword}[class=AMS]  % please indicate appropriate AMS codes
-            \kwd[Primary ]{00K00}
-            \kwd{00K01}
-            \kwd[; secondary ]{00K02}
-        \end{keyword}
+\begin{keyword}[class=AMS]  % please indicate appropriate AMS codes
+\kwd[Primary ]{00K00}
+\kwd{00K01}
+\kwd[; secondary ]{00K02}
+\end{keyword}
 
-        \begin{keyword}
-            \kwd{Sample}
-            \kwd{\LaTeX}
-        \end{keyword}
+\begin{keyword}
+\kwd{Sample}
+\kwd{\LaTeX}
+\end{keyword}
 
-        \tableofcontents
+\tableofcontents
 
-    \end{frontmatter}
+\end{frontmatter}
 
-    Your publication content
+Your publication content
 
 \end{document}
 ```
