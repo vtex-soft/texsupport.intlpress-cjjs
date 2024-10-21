@@ -19,10 +19,14 @@
 
 %%  DEPENDENCIES:
 %%  - article.cls
+%%  - ipart-layout-bpam.sty
+%%  - ipart-layout-cjjs.sty
 %%  - ipart-layout-main.sty
 %%  - ipart-layout-pamq.sty
 %%  - ipart-layout-sii.sty
 %%  - ipart-vtex.sty
+%%  - ipart-vtex-bpam.sty
+%%  - ipart-vtex-cjjs.sty
 %%  - ipart-vtex-pamq.sty
 %%  - ipart-vtex-sii.sty
 %%
@@ -70,6 +74,7 @@
 \def\sii@layout@id{2}
 \def\jbr@layout@id{3}
 \def\bpam@layout@id{4}
+\def\cjjs@layout@id{5}
 \let\selected@layout\main@layout@id
 
 \def\journal@id{}
@@ -217,6 +222,7 @@
     }
 \DeclareOption{cjjs}{%
     \PassOptionsToClass{11pt}{article}%
+    \def\@JID{CJJS}%
     \def\journal@id{-cjjs}%
     \def\journal@name{Cambridge Journal for Junior Scientists}%
     \def\journal@issn{ISSN: ???}%
@@ -227,6 +233,7 @@
         \def\beditor@style{\rm}%
         }%
     \@autosecdottrue
+    \global\let\selected@layout\cjjs@layout@id
     }
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -251,6 +258,8 @@
     \RequirePackage{ipart-layout-jbr}
 \or  % 4 - bpam layout
     \RequirePackage{ipart-layout-bpam}
+\or  % 5 - cjjs layout
+    \RequirePackage{ipart-layout-cjjs}
 \fi
 %%
 %%  ======= VTeX SETUP =======

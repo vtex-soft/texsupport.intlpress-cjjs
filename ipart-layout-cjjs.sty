@@ -1,31 +1,21 @@
 %%
-%% This is file `ipart-layout-main.sty',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% ipart.dtx  (with options: `layout,layout-main')
+%% This is file `ipart-layout-cjjs.sty',
 %% 
-%%  Main settings file for the
-%%      Journal of Combinatorics (JOC)
-%%      Communications in Number Theory and Physics (CNTP)
-%%      Cambridge Journal of Mathematics (CJM)
-%%      Geometry, Imaging and Computing (GIC)
-%%      Mathematics, Computation and Geometry of Data (MCGD)
-%%      Communications in Information and Systems (CIS)
-%%      Annals of Mathematical Sciences and Applications (AMSA)
+%%  Additional settings file for the
 %%      Cambridge Journal for Junior Scientists (CJJS)
 %%
 \NeedsTeXFormat{LaTeX2e}
-\def\ipfmt@name{ipart-layout-main}
-\def\ipfmt@version{2024/10/17 v2.0.6}
+\def\ipfmt@name{ipart-layout-cjjs}
+\def\ipfmt@version{2024/10/21 v1.0.0}
 \ProvidesPackage{\ipfmt@name}
-    [\ipfmt@version INTLPRESS journal main layout style]
+    [\ipfmt@version INTLPRESS journal CJJS layout style]
 
 %%  DEPENDENCIES:
 %%  - etoolbox.sty
 %%  - keyval.sty
 %%  - afterpackage.sty
+%%  - fontenc.sty
+%%  - lmodern.sty
 %%  - amsmath.sty
 %%  - amsthm.sty
 %%  - amssymb.sty
@@ -68,11 +58,6 @@
 \RequirePackage{etoolbox}
 \RequirePackage{keyval}
 \RequirePackage{afterpackage}
-\RequirePackage[T1]{fontenc}
-\RequirePackage{lmodern}
-
-\DeclareFontFamily{OMX}{lmex}{}
-\DeclareFontShape{OMX}{lmex}{m}{n}{<-> lmex10}{}
 
 \def\do@option@list#1#2{%
     \@for\curr@option:={#2}\do{%
@@ -191,6 +176,13 @@
 %%
 %%  ======= FONT =======
 %%
+\RequirePackage[T1]{fontenc}
+\ifdefined\HCode\else
+  \RequirePackage{lmodern}
+  \DeclareFontFamily{OMX}{lmex}{}
+  \DeclareFontShape{OMX}{lmex}{m}{n}{<-> lmex10}{}
+\fi
+
 %%  Change to main font
 \renewcommand\normalsize{%
     \@setfontsize\normalsize{11\p@}{13.5\p@ plus .5\p@ minus .5\p@}%
@@ -337,7 +329,9 @@
 
 \def\articletype#1{\gdef\@articletype{#1}}
 \@onlypreamble\articletype
-\def\aid#1{\gdef\@aid{#1}}
+\def\aid#1{%
+  \def\@aid{#1}%
+  }
 
 %%  pubyear, volume, paperno
 \def\@pubyear{}
@@ -356,11 +350,13 @@
 %%  arXiv
 \def\arxiv#1{%
     \gdef\@arxiv{#1}%
-    \AtBeginDocument{%
-        \safe@footnotetext{%
-            \url@fmt{arXiv: }{}{#1}{\arxiv@base\@arxiv}%
+    \ifdefined\HCode\else
+        \AtBeginDocument{%
+            \safe@footnotetext{%
+                \url@fmt{arXiv: }{}{#1}{\arxiv@base\@arxiv}%
+                }%
             }%
-        }%
+    \fi
     }
 \let\@arxiv\relax
 %%  https://arxiv.org/abs/math.PR/0603300
@@ -634,6 +630,7 @@
 %%
 %%  ======= TITLE =======
 %%
+\let\pretitle\@gobble
 
 \def\runtitle#1{\gdef\@runtitle{#1}}
 \def\@runtitle{}
@@ -1068,6 +1065,11 @@
 %%  ======= ADDRESS =======
 %%
 \let\affiliation\@gobble
+\let\cny\@firstofone
+\let\dept\@firstofone
+\let\institution\@firstofone
+\let\addr\@firstofone
+\let\city\@firstofone
 
 %%  Put address at end
 \def\address{\@ifnextchar[{\address@fmt}{\address@fmt[default]}}
@@ -2004,4 +2006,4 @@
 
 \endinput
 %%
-%% End of file `ipart-layout-main.sty'.
+%% End of file `ipart-layout-cjjs.sty'.
