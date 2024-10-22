@@ -6,7 +6,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \def\ipfmt@name{ipart-layout-cjjs}
-\def\ipfmt@version{2024/10/21 v1.0.0}
+\def\ipfmt@version{2024/10/22 v1.0.1}
 \ProvidesPackage{\ipfmt@name}
     [\ipfmt@version INTLPRESS journal CJJS layout style]
 
@@ -909,6 +909,11 @@
             \@runact
         \fi
     \endgroup
+    }
+
+\let\author@fmt@sav\author@fmt
+\def\author@fmt[#1]{%
+    \author@fmt@sav[]%
     }
 
 %%  \corref
