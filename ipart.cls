@@ -225,8 +225,8 @@
     \def\@JID{CJJS}%
     \def\journal@id{-cjjs}%
     \def\journal@name{Cambridge Journal for Junior Scientists}%
-    \def\journal@issn{ISSN: ???}%
-    \def\journal@eissn{ISSN: ???}%
+    \def\journal@issn{ISSN: 2998-1433}%
+    \def\journal@eissn{ISSN: 2998-1441}%
     \def\journal@url{\ip@journal@url{cjjs}}%
     \AtBeginDocument{%
         \def\bauthor@style{\rm}%
