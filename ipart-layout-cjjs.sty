@@ -6,7 +6,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \def\ipfmt@name{ipart-layout-cjjs}
-\def\ipfmt@version{2025/09/03 v1.0.2}
+\def\ipfmt@version{2025/10/01 v1.0.3}
 \ProvidesPackage{\ipfmt@name}
     [\ipfmt@version INTLPRESS journal CJJS layout style]
 
@@ -298,16 +298,17 @@
     \let\@evenfoot\@oddfoot
     }
 
+\def\copyright@doi{}
+\def\copyright@volume{\@volume, \@issue, \@pagerange, \@pubyear}
+\def\copyright@info{\copyright@volume\break}
 \def\copyright@text{%
-    \url@fmt{}{\copyright@url@font}{\journal@name}{\journal@url}%
+    {\copyright@url@font\journal@name}%
     \print@copyrightowner\break
     \@ifundefined{volume@title}{}{\textbf{\volume@title}\break}%
-    \@ifnonempty{\@volume, \@issue, \@pagerange, \@pubyear\break}%
-    \doi@text
+    \copyright@info
+    \copyright@doi
     }
 \def\copyright@url@font{\scshape}
-\def\doi@text{\url@fmt{url: }{\ttfamily}{\paper@url}{\paper@url}}
-\def\paper@url{}
 
 %%  copyrightowner
 \def\print@copyrightowner{%
@@ -410,6 +411,15 @@
     }
 %%  hyperref redefines \pagenumbering, so we must override hyperref definition
 \let\ip@pagenumbering\pagenumbering
+
+%% doi
+\def\doi@prefix{DOI:}
+\def\doi@base{https://doi.org/}
+\def\doi@font{\ttfamily}
+\def\print@doi{%
+    {\doi@font\doi@prefix\href{\doi@base\@doi}{\@doi}}%
+  }
+\def\doi#1{\gdef\@doi{#1}}
 
 %%  startlocaldefs, endlocaldefs
 \def\startlocaldefs{\makeatletter}
