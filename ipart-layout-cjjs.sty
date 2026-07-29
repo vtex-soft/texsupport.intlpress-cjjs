@@ -6,7 +6,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}
 \def\ipfmt@name{ipart-layout-cjjs}
-\def\ipfmt@version{2026/05/25 v1.0.10}
+\def\ipfmt@version{2026/07/27 v1.0.11}
 \ProvidesPackage{\ipfmt@name}
     [\ipfmt@version INTLPRESS journal CJJS layout style]
 
@@ -322,13 +322,23 @@
 \def\copyright@doi{}
 \def\copyright@volume{\@volume, \@issue, \@pagerange, \@pubyear}
 \def\copyright@info{\copyright@volume\break}
-\def\copyright@text{%
-    {\copyright@url@font\journal@name}%
-    \print@copyrightowner\break
-    \@ifundefined{volume@title}{}{\textbf{\volume@title}\break}%
-    \copyright@info
-    \copyright@doi
-    }
+\ifnum\jobstart@date@info>20260726\relax
+    \def\copyright@text{%
+        {\copyright@url@font\journal@name}%
+        \print@copyrightowner\break
+        \@ifundefined{volume@title}{}{\textbf{\volume@title}\break}%
+        \copyright@doi
+        \copyright@info
+        }
+\else
+    \def\copyright@text{%
+        {\copyright@url@font\journal@name}%
+        \print@copyrightowner\break
+        \@ifundefined{volume@title}{}{\textbf{\volume@title}\break}%
+        \copyright@info
+        \copyright@doi
+        }
+\fi
 \def\copyright@url@font{\scshape}
 
 %%  copyrightowner
@@ -452,6 +462,7 @@
 \def\received@prefix{Received~}
 \def\revised@prefix{; revised~}
 \def\accepted@prefix{; accepted~}
+\def\pubonline@prefix{Published online:~}
 
 \def\history@exist{0}
 \def\@received{\@nil}
@@ -479,6 +490,14 @@
     \else
         \gdef\@accepted{#1}%
         \gdef\history@exist{1}%
+    \fi
+    }
+%\def\@pubonline{\@nil}
+\def\pubonline#1{%
+    \def\@tempa{#1}%
+    \ifx\@tempa\@empty
+    \else
+        \gdef\@pubonline{#1}%
     \fi
     }
 
